@@ -1,7 +1,10 @@
 package com.bts.flickr.ui.search
 
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.SearchRecentSuggestions
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
@@ -12,7 +15,8 @@ import butterknife.BindView
 import com.bts.flickr.FlickrApp
 import com.bts.flickr.R
 import com.bts.flickr.config.ApiConfig
-import com.bts.flickr.data.entity.Interestingness
+import com.bts.flickr.data.entity.Photo
+import com.bts.flickr.data.resource.SuggestionProvider
 import com.bts.flickr.di.search.SearchModule
 import com.bts.flickr.ui.BaseActivity
 import com.bts.flickr.ui.details.ImageDetailsActivity
@@ -20,11 +24,6 @@ import com.bts.flickr.ui.search.adapter.ImagesAdapter
 import com.bts.flickr.ui.search.adapter.OnImageClickListener
 import com.bts.flickr.utils.AndroidUtils
 import javax.inject.Inject
-import android.provider.SearchRecentSuggestions
-import android.app.SearchManager
-import android.content.Context
-import android.util.Log
-import com.bts.flickr.data.resource.SuggestionProvider
 
 
 class SearchActivity : BaseActivity(), SearchContract.View, OnImageClickListener, SearchView.OnQueryTextListener {
@@ -54,14 +53,12 @@ class SearchActivity : BaseActivity(), SearchContract.View, OnImageClickListener
         presenter.loadData(ApiConfig.METHOD_INTERESTINGNESS, getString(R.string.FLICKR_API_KEY))
     }
 
-    override fun onSuccess(model: Interestingness) {
+    override fun onSuccess(photoList: ArrayList<Photo>) {
         val adapter = ImagesAdapter(this)
 
-        model.photos?.let {
-            adapter.addItems(it.photoList!!)
-            recyclerView.layoutManager = GridLayoutManager(applicationContext, resources.getInteger(R.integer.columns_count))
-            recyclerView.adapter = adapter
-        }
+        adapter.addItems(photoList)
+        recyclerView.layoutManager = GridLayoutManager(applicationContext, resources.getInteger(R.integer.columns_count))
+        recyclerView.adapter = adapter
     }
 
     override fun onError(msg: String) {
@@ -115,8 +112,6 @@ class SearchActivity : BaseActivity(), SearchContract.View, OnImageClickListener
             val suggestions = SearchRecentSuggestions(this,
                     SuggestionProvider.AUTHORITY, SuggestionProvider.MODE)
             suggestions.saveRecentQuery(query, null)
-
-            Log.d("SEARCHHHH", query)
         }
     }
 }

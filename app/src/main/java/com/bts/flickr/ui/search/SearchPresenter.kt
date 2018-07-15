@@ -35,7 +35,7 @@ class SearchPresenter(private val resourceManager: ResourceManager, private val 
                 .subscribe({ response ->
                     if (response.isSuccessful) {
                         response.body()?.let {
-                            view?.onSuccess(it)
+                            view?.onSuccess(it.photos!!.photoList!!)
                         }
                     } else view?.onError(response.message())
 
@@ -54,7 +54,7 @@ class SearchPresenter(private val resourceManager: ResourceManager, private val 
                 .subscribe({ response ->
                     if (response.isSuccessful) {
                         response.body()?.let {
-                            view?.onSuccess(it)
+                            view?.onSuccess(it.photos!!.photoList!!)
                         }
                     } else view?.onError(resourceManager.getStringResource(R.string.msg_connection_failure))
 

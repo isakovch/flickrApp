@@ -1,13 +1,13 @@
 package com.bts.flickr.ui.search
 
-import com.bts.flickr.data.entity.Interestingness
+import com.bts.flickr.data.entity.Photo
 import com.bts.flickr.ui.ILifecycle
 import com.bts.flickr.ui.IProgressBar
 
 interface SearchContract {
 
     interface View : IProgressBar {
-        fun onSuccess(model: Interestingness)
+        fun onSuccess(photoList: ArrayList<Photo>)
 
         fun onError(msg: String)
     }

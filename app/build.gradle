@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        applicationId "com.bts.flickr"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "FLICKR_API_KEY", "\"${flickr_api_key}\""
+        resValue "string", "FLICKR_SECRET_KEY", "\"${flickr_secret_key}\""
+
+        buildConfigField "String", "BASE_URL", "\"${base_url}\""
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation libs.kotlin
+
+    implementation libs.appCompat
+    implementation libs.design
+    implementation libs.cardView
+    implementation libs.support
+    implementation libs.constraint
+
+    implementation libs.dagger
+    kapt libs.daggerProcessor
+
+    implementation libs.retrofit
+    implementation libs.retrofitConverter
+    implementation libs.retrofitAdapter
+
+    implementation libs.okhttp
+    implementation libs.rxAndroid
+    implementation libs.rxJava
+
+    implementation libs.butterKnife
+    kapt libs.butterKnifeCompiler
+
+    implementation libs.picasso
+
+    implementation libs.multidex
+
+    testImplementation libs.junit
+    androidTestImplementation libs.runner
+    androidTestImplementation libs.espressoCore
+}

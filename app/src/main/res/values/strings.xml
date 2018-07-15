@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Flickr</string>
+
+    <string name="action_search">Search</string>
+    <string name="title_image">Image</string>
+    <string name="msg_connection_failure">Connection failure</string>
+    <string name="search_hint">Search…</string>
+</resources>

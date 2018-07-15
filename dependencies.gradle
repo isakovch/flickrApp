@@ -1,0 +1,62 @@
+ext {
+    versions = [
+            compileSdk              : 27,
+            targetSdk               : 27,
+            minSdk                  : 19,
+
+            kotlin_version          : '1.2.51',
+
+            support                 : '27.1.1',
+            constraintLayout        : '1.1.1',
+
+            // libs
+            dagger                  : '2.14.1',
+            okhttp                  : '3.10.0',
+            apollo                  : '0.4.1',
+            retrofit                : '2.3.0',
+            butterKnife             : '8.8.1',
+            picasso                 : '2.71828',
+            rxAndroid               : '2.0.2',
+            rxJava                  : '2.1.9',
+            multidex                : '1.0.3',
+
+            // test
+            espresso                : '3.0.2',
+            runner                  : '1.0.2',
+            junit                   : '4.12',
+    ]
+
+    libs = [
+            appCompat               : "com.android.support:appcompat-v7:${versions.support}",
+            design                  : "com.android.support:design:${versions.support}",
+            cardView                : "com.android.support:cardview-v7:${versions.support}",
+            support                 : "com.android.support:support-v4:${versions.support}",
+
+            constraint              : "com.android.support.constraint:constraint-layout:${versions.constraintLayout}",
+
+            dagger                  : "com.google.dagger:dagger:${versions.dagger}",
+            daggerProcessor         : "com.google.dagger:dagger-compiler:${versions.dagger}",
+
+            retrofit                : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+            retrofitConverter       : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+            retrofitAdapter         : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
+
+            okhttp                  : "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
+
+            butterKnife             : "com.jakewharton:butterknife:${versions.butterKnife}",
+            butterKnifeCompiler     : "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
+
+            kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin_version}",
+            rxAndroid               : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
+            rxJava                  : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
+
+            picasso                 : "com.squareup.picasso:picasso:${versions.picasso}",
+
+            multidex                : "com.android.support:multidex:${versions.multidex}",
+
+            // Test
+            junit                   : "junit:junit:$versions.junit",
+            espressoCore            : "com.android.support.test.espresso:espresso-core:${versions.espresso}",
+            runner                  : "com.android.support.test:runner:${versions.runner}"
+    ]
+}
